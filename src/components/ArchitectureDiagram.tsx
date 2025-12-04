@@ -21,16 +21,16 @@ const icons: Record<ArchitectureNode['icon'], string> = {
   code: 'M5.854 4.854a.5.5 0 1 0-.708-.708l-3.5 3.5a.5.5 0 0 0 0 .708l3.5 3.5a.5.5 0 0 0 .708-.708L2.707 8l3.147-3.146Zm4.292 0a.5.5 0 0 1 .708-.708l3.5 3.5a.5.5 0 0 1 0 .708l-3.5 3.5a.5.5 0 0 1-.708-.708L13.293 8l-3.147-3.146Z',
 }
 
-const nodeWidth = 90
+const nodeWidth = 110
 const nodeHeight = 56
-const nodeGap = 16
-const layerPadding = 12
-const layerGap = 20
-const labelWidth = 14
-const padding = 20
+const nodeGap = 12
+const layerPadding = 16
+const layerGap = 24
+const labelHeight = 24
+const padding = 16
 
 export function ArchitectureDiagram({ layers, nodes, connections }: Props) {
-  // Sort layers by level (now horizontal: level 0 = leftmost)
+  // Sort layers by level (horizontal: level 0 = leftmost)
   const sortedLayers = [...layers].sort((a, b) => a.level - b.level)
 
   // Group nodes by layer
@@ -50,7 +50,7 @@ export function ArchitectureDiagram({ layers, nodes, connections }: Props) {
   for (const layer of sortedLayers) {
     const layerNodes = nodesByLayer.get(layer.id) || []
     const maxRow = Math.max(...layerNodes.map((n) => n.column), 0)
-    const height = (maxRow + 1) * (nodeHeight + nodeGap) - nodeGap + layerPadding * 2
+    const height = labelHeight + (maxRow + 1) * (nodeHeight + nodeGap) - nodeGap + layerPadding * 2
     maxLayerHeight = Math.max(maxLayerHeight, height)
   }
 
@@ -58,9 +58,9 @@ export function ArchitectureDiagram({ layers, nodes, connections }: Props) {
   for (const layer of sortedLayers) {
     const layerNodes = nodesByLayer.get(layer.id) || []
     const maxRow = Math.max(...layerNodes.map((n) => n.column), 0)
-    const contentHeight = (maxRow + 1) * (nodeHeight + nodeGap) - nodeGap
+    const contentHeight = labelHeight + (maxRow + 1) * (nodeHeight + nodeGap) - nodeGap
     const height = Math.max(contentHeight + layerPadding * 2, maxLayerHeight)
-    const width = labelWidth + nodeWidth + layerPadding * 2
+    const width = nodeWidth + layerPadding * 2
 
     layerInfo.set(layer.id, {
       x: currentX,
@@ -80,14 +80,9 @@ export function ArchitectureDiagram({ layers, nodes, connections }: Props) {
     const layer = layerInfo.get(node.layer)
     if (!layer) return { x: 0, y: 0 }
 
-    const layerNodes = nodesByLayer.get(node.layer) || []
-    const maxRow = Math.max(...layerNodes.map((n) => n.column), 0)
-    const contentHeight = (maxRow + 1) * (nodeHeight + nodeGap) - nodeGap
-    const offsetY = (layer.height - contentHeight) / 2
-
     return {
-      x: layer.x + labelWidth + layerPadding,
-      y: layer.y + offsetY + node.column * (nodeHeight + nodeGap),
+      x: layer.x + layerPadding,
+      y: layer.y + labelHeight + layerPadding + node.column * (nodeHeight + nodeGap),
     }
   }
 
@@ -138,7 +133,7 @@ export function ArchitectureDiagram({ layers, nodes, connections }: Props) {
       <svg
         viewBox={`0 0 ${totalWidth} ${totalHeight}`}
         className="w-full"
-        style={{ minWidth: '600px', maxHeight: '320px' }}
+        style={{ minWidth: '700px', maxHeight: '360px' }}
       >
         {/* Layer rectangles */}
         {sortedLayers.map((layer) => {
@@ -156,14 +151,13 @@ export function ArchitectureDiagram({ layers, nodes, connections }: Props) {
                 stroke="#333"
                 strokeWidth="1"
               />
-              {/* Vertical label */}
+              {/* Label at top */}
               <text
-                x={info.x + 10}
-                y={info.y + info.height / 2}
-                fill="#555"
-                className="text-[9px] uppercase tracking-wider"
-                style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
-                transform={`rotate(180, ${info.x + 10}, ${info.y + info.height / 2})`}
+                x={info.x + info.width / 2}
+                y={info.y + 16}
+                fill="#666"
+                textAnchor="middle"
+                className="text-[10px] uppercase tracking-wider"
               >
                 {layer.label}
               </text>
