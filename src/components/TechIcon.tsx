@@ -1,92 +1,94 @@
-import {
-  siReact,
-  siAngular,
-  siTypescript,
-  siPython,
-  siPostgresql,
-  siMongodb,
-  siDocker,
-  siVercel,
-  siPrisma,
-  siFastapi,
-  siTailwindcss,
-  siNextdotjs,
-  siNodedotjs,
-  siJupyter,
-  siNumpy,
-} from 'simple-icons'
+import type { SVGProps, ComponentType } from 'react'
 
-type SimpleIcon = {
-  path: string
-  hex: string
-  title: string
-}
+// SVGL icons
+import { ReactLight } from '@/components/ui/svgs/reactLight'
+import { Angular } from '@/components/ui/svgs/angular'
+import { Typescript } from '@/components/ui/svgs/typescript'
+import { Python } from '@/components/ui/svgs/python'
+import { Postgresql } from '@/components/ui/svgs/postgresql'
+import { Docker } from '@/components/ui/svgs/docker'
+import { Vercel } from '@/components/ui/svgs/vercel'
+import { Prisma } from '@/components/ui/svgs/prisma'
+import { Fastapi } from '@/components/ui/svgs/fastapi'
+import { Tailwindcss } from '@/components/ui/svgs/tailwindcss'
+import { NextjsIconDark } from '@/components/ui/svgs/nextjsIconDark'
+import { AwsLight } from '@/components/ui/svgs/awsLight'
+import { Trpc } from '@/components/ui/svgs/trpc'
+import { Openai } from '@/components/ui/svgs/openai'
+import { Nodejs } from '@/components/ui/svgs/nodejs'
+import { MongodbIconLight } from '@/components/ui/svgs/mongodbIconLight'
 
-// Custom icons for services not in simple-icons
-const customIcons: Record<string, string> = {
-  aws: 'M6.375 15.125c0 .37.04.67.11.89.08.22.18.46.31.71.05.08.07.16.07.23 0 .1-.06.2-.19.3l-.63.42a.47.47 0 0 1-.26.09c-.1 0-.2-.05-.29-.14a3 3 0 0 1-.35-.46l-.3-.58c-.75.89-1.7 1.33-2.84 1.33-.81 0-1.46-.23-1.94-.69s-.72-1.06-.72-1.8c0-.8.28-1.44.85-1.94.57-.49 1.32-.74 2.26-.74.31 0 .64.03.98.08.35.05.71.13 1.08.23V11.6c0-.71-.15-1.21-.45-1.5s-.79-.43-1.51-.43c-.32 0-.66.04-1 .12-.35.08-.69.19-1.03.32a2.7 2.7 0 0 1-.32.12.56.56 0 0 1-.14.02c-.13 0-.19-.09-.19-.28v-.49c0-.14.02-.25.07-.32.05-.07.14-.14.28-.2.33-.17.72-.31 1.17-.42C2.44 8.94 2.94 8.89 3.47 8.89c1.1 0 1.9.25 2.41.75.5.5.76 1.27.76 2.3v3.03h-.29v.14zm-3.92.93c.3 0 .62-.06.94-.17.33-.11.62-.32.86-.6.15-.17.26-.37.33-.59.07-.22.1-.48.1-.8v-.38c-.27-.08-.56-.14-.85-.18-.3-.04-.59-.06-.87-.06-.62 0-1.07.12-1.37.37-.3.24-.45.59-.45 1.04 0 .42.11.73.33.95.21.21.52.32.93.32h.05zm7.75 1.06c-.17 0-.28-.03-.35-.09-.07-.05-.13-.16-.18-.31L6.97 9.35a1.36 1.36 0 0 1-.07-.33c0-.13.07-.2.2-.2h.98c.18 0 .3.03.36.09.07.06.12.16.17.31l1.94 7.65 1.8-7.65c.04-.16.09-.26.16-.31.07-.06.2-.09.37-.09h.8c.18 0 .3.03.37.09.07.06.13.16.16.31l1.83 7.75 2-7.75c.05-.16.11-.26.17-.31.07-.06.19-.09.36-.09h.93c.13 0 .2.07.2.2 0 .04-.01.08-.02.13a.99.99 0 0 1-.05.21l-2.78 7.49c-.05.16-.11.26-.18.31-.07.06-.19.09-.35.09h-.86c-.18 0-.3-.03-.37-.09-.07-.06-.13-.16-.16-.32l-1.8-7.45-1.78 7.44c-.04.16-.09.26-.16.32-.07.06-.2.09-.37.09h-.86zm12.4.28c-.48 0-.97-.06-1.44-.17-.47-.11-.84-.24-1.09-.38-.16-.09-.26-.18-.3-.27a.7.7 0 0 1-.06-.27v-.51c0-.19.07-.28.21-.28.05 0 .11.01.16.03.05.02.13.05.22.09.3.13.62.24.97.32.36.08.7.12 1.06.12.56 0 1-.1 1.3-.3.31-.2.47-.49.47-.88 0-.26-.08-.47-.25-.65-.16-.17-.47-.33-.91-.46l-1.31-.41c-.66-.21-1.15-.52-1.44-.93-.3-.4-.44-.85-.44-1.33 0-.38.08-.72.25-1.01.16-.29.38-.54.66-.75.28-.21.6-.37.97-.48.37-.11.77-.16 1.18-.16.21 0 .42.01.64.04.23.03.44.07.65.11.2.05.39.1.57.16.18.06.32.12.42.18.14.08.24.16.3.24a.5.5 0 0 1 .08.3v.47c0 .19-.07.29-.21.29-.08 0-.2-.04-.37-.11a4.57 4.57 0 0 0-1.78-.35c-.51 0-.91.08-1.18.24-.28.16-.42.42-.42.78 0 .26.09.48.27.66.18.18.51.35 1 .51l1.28.4c.65.21 1.12.5 1.4.87.28.37.42.8.42 1.27 0 .39-.08.75-.24 1.06-.17.31-.39.58-.68.8-.29.22-.64.39-1.04.51-.43.12-.88.18-1.37.18z',
+type SvgComponent = ComponentType<SVGProps<SVGSVGElement>>
+
+// Fallback paths for icons not in SVGL
+const fallbackPaths: Record<string, string> = {
+  langchain: 'M12 2L4 6v12l8 4 8-4V6l-8-4zm0 2.5L17.5 7.5 12 10.5 6.5 7.5 12 4.5zM6 9l5 2.5v7L6 16V9zm12 0v7l-5 2.5v-7L18 9z',
+  openaiAlt: 'M22.28 9.37a5.83 5.83 0 0 0-.51-4.79 5.91 5.91 0 0 0-6.37-2.82 5.88 5.88 0 0 0-4.41-1.97A5.91 5.91 0 0 0 5.4 3.36a5.83 5.83 0 0 0-3.9 2.83 5.91 5.91 0 0 0 .73 6.94 5.83 5.83 0 0 0 .51 4.79 5.91 5.91 0 0 0 6.37 2.82 5.88 5.88 0 0 0 4.41 1.97 5.91 5.91 0 0 0 5.59-3.57 5.83 5.83 0 0 0 3.9-2.83 5.91 5.91 0 0 0-.73-6.94zm-8.78 12.4a4.42 4.42 0 0 1-2.85-1.03l.14-.08 4.73-2.73a.77.77 0 0 0 .39-.67v-6.67l2 1.15a.07.07 0 0 1 .04.05v5.53a4.46 4.46 0 0 1-4.45 4.45z',
+  matplotlib: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z',
+  mnist: 'M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z',
   lambda: 'M14.63 7.18l-2.97 8.23-2.46-6.81H6.82l3.6 9.13c.17.43.35.77.56 1.01.21.25.51.37.92.37.41 0 .71-.12.92-.37.21-.24.39-.58.56-1.01l4.3-10.55h-3.05z M5.45 3L2 21h3.17l.93-4.85h3.14L7.45 3H5.45z',
   dynamodb: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z',
   s3: 'M20.9 10.78l-1-.09-.4-.74.62-.79c.24-.3.2-.73-.08-.99l-1.2-1.1a.75.75 0 0 0-1-.05l-.77.59-.8-.35-.15-.98a.75.75 0 0 0-.74-.63h-1.64a.75.75 0 0 0-.74.63l-.15.98-.8.35-.77-.59a.75.75 0 0 0-1 .05l-1.2 1.1a.75.75 0 0 0-.08.99l.62.79-.4.74-1 .09a.75.75 0 0 0-.66.74v1.55c0 .37.28.7.66.74l1 .09.4.74-.62.79a.75.75 0 0 0 .08.99l1.2 1.1c.27.25.7.28 1 .05l.77-.59.8.35.15.98c.05.37.38.63.74.63h1.64c.37 0 .7-.26.74-.63l.15-.98.8-.35.77.59c.3.23.72.2 1-.05l1.2-1.1c.28-.26.32-.7.08-.99l-.62-.79.4-.74 1-.09a.75.75 0 0 0 .66-.74v-1.55a.75.75 0 0 0-.66-.74zM12 15a3 3 0 1 1 0-6 3 3 0 0 1 0 6z',
   bedrock: 'M12 2L3 7v10l9 5 9-5V7l-9-5zm0 2.18l6.35 3.53L12 11.24 5.65 7.71 12 4.18zM5 9.06l6 3.33v6.35l-6-3.33V9.06zm14 6.35l-6 3.33v-6.35l6-3.33v6.35z',
   apigateway: 'M4 4h16v2H4V4zm0 6h16v2H4v-2zm0 6h16v2H4v-2z',
-  trpc: 'M12 2L3 7v10l9 5 9-5V7l-9-5zm0 3l6 3.33v6.67L12 18l-6-3v-6.67L12 5z',
-  langchain: 'M12 2L4 6v12l8 4 8-4V6l-8-4zm0 2.5L17.5 7.5 12 10.5 6.5 7.5 12 4.5zM6 9l5 2.5v7L6 16V9zm12 0v7l-5 2.5v-7L18 9z',
-  openai: 'M22.28 9.37a5.83 5.83 0 0 0-.51-4.79 5.91 5.91 0 0 0-6.37-2.82 5.88 5.88 0 0 0-4.41-1.97A5.91 5.91 0 0 0 5.4 3.36a5.83 5.83 0 0 0-3.9 2.83 5.91 5.91 0 0 0 .73 6.94 5.83 5.83 0 0 0 .51 4.79 5.91 5.91 0 0 0 6.37 2.82 5.88 5.88 0 0 0 4.41 1.97 5.91 5.91 0 0 0 5.59-3.57 5.83 5.83 0 0 0 3.9-2.83 5.91 5.91 0 0 0-.73-6.94zm-8.78 12.4a4.42 4.42 0 0 1-2.85-1.03l.14-.08 4.73-2.73a.77.77 0 0 0 .39-.67v-6.67l2 1.15a.07.07 0 0 1 .04.05v5.53a4.46 4.46 0 0 1-4.45 4.45zm-9.57-4.08a4.42 4.42 0 0 1-.53-2.98l.14.08 4.73 2.73a.77.77 0 0 0 .77 0l5.77-3.33v2.31a.07.07 0 0 1-.03.06l-4.78 2.76a4.46 4.46 0 0 1-6.07-1.63zm-1.24-10.3a4.42 4.42 0 0 1 2.32-1.95v5.62a.77.77 0 0 0 .39.67l5.77 3.33-2 1.15a.07.07 0 0 1-.07 0l-4.78-2.76a4.46 4.46 0 0 1-1.63-6.06zm16.44 3.83l-5.77-3.33 2-1.15a.07.07 0 0 1 .07 0l4.78 2.76a4.46 4.46 0 0 1-.69 8.03v-5.64a.77.77 0 0 0-.39-.67zm1.99-3a4.42 4.42 0 0 0-2.32-1.03l-.14.08-4.73 2.73a.77.77 0 0 0-.39.67v6.67l-2-1.15a.07.07 0 0 1-.04-.06V10.6a4.46 4.46 0 0 1 5.09-4.41 4.42 4.42 0 0 1 2.21.95 4.46 4.46 0 0 1 2.32 3.06zm-12.5 4.1l-2-1.15a.07.07 0 0 1-.04-.06V5.58a4.46 4.46 0 0 1 7.3-3.42l-.14.08-4.73 2.73a.77.77 0 0 0-.39.67v6.67zm1.09-2.34l2.57-1.49 2.57 1.49v2.97l-2.57 1.49-2.57-1.49V9.98z',
-  matplotlib: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z',
-  mnist: 'M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z',
+  jupyter: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z',
+  numpy: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5',
+  default: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z',
 }
 
-const iconMap: Record<string, SimpleIcon | null> = {
-  react: siReact,
-  'react dashboard': siReact,
-  angular: siAngular,
-  'angular app': siAngular,
-  'next.js': siNextdotjs,
-  'next.js app': siNextdotjs,
-  nextjs: siNextdotjs,
-  typescript: siTypescript,
-  python: siPython,
-  'node.js': siNodedotjs,
-  nodejs: siNodedotjs,
-  postgresql: siPostgresql,
-  postgres: siPostgresql,
-  mongodb: siMongodb,
-  docker: siDocker,
-  vercel: siVercel,
-  prisma: siPrisma,
-  'prisma orm': siPrisma,
-  fastapi: siFastapi,
-  tailwind: siTailwindcss,
-  'tailwind css': siTailwindcss,
-  'jupyter notebook': siJupyter,
-  numpy: siNumpy,
+// Map tech names to SVGL components
+const svglIconMap: Record<string, SvgComponent> = {
+  react: ReactLight,
+  'react dashboard': ReactLight,
+  angular: Angular,
+  'angular app': Angular,
+  'next.js': NextjsIconDark,
+  'next.js app': NextjsIconDark,
+  nextjs: NextjsIconDark,
+  typescript: Typescript,
+  python: Python,
+  postgresql: Postgresql,
+  postgres: Postgresql,
+  docker: Docker,
+  vercel: Vercel,
+  prisma: Prisma,
+  'prisma orm': Prisma,
+  fastapi: Fastapi,
+  tailwind: Tailwindcss,
+  'tailwind css': Tailwindcss,
+  aws: AwsLight,
+  trpc: Trpc,
+  'trpc api': Trpc,
+  openai: Openai,
+  'node.js': Nodejs,
+  nodejs: Nodejs,
+  mongodb: MongodbIconLight,
 }
 
-const customIconMap: Record<string, string> = {
-  aws: customIcons.aws,
-  'aws lambda': customIcons.lambda,
-  lambda: customIcons.lambda,
-  dynamodb: customIcons.dynamodb,
-  s3: customIcons.s3,
-  'api gateway': customIcons.apigateway,
-  bedrock: customIcons.bedrock,
-  trpc: customIcons.trpc,
-  'trpc api': customIcons.trpc,
-  langchain: customIcons.langchain,
-  openai: customIcons.openai,
-  matplotlib: customIcons.matplotlib,
-  'mnist dataset': customIcons.mnist,
+// Map tech names to fallback paths
+const fallbackIconMap: Record<string, string> = {
+  'aws lambda': fallbackPaths.lambda,
+  lambda: fallbackPaths.lambda,
+  dynamodb: fallbackPaths.dynamodb,
+  s3: fallbackPaths.s3,
+  'api gateway': fallbackPaths.apigateway,
+  bedrock: fallbackPaths.bedrock,
+  langchain: fallbackPaths.langchain,
+  'jupyter notebook': fallbackPaths.jupyter,
+  numpy: fallbackPaths.numpy,
+  matplotlib: fallbackPaths.matplotlib,
+  'mnist dataset': fallbackPaths.mnist,
 }
-
-const defaultPath = 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z'
 
 export function TechIcon({ name, className = '' }: { name: string; className?: string }) {
   const normalized = name.toLowerCase()
-  const simpleIcon = iconMap[normalized]
-  const customPath = customIconMap[normalized]
+  const SvglIcon = svglIconMap[normalized]
 
-  const path = simpleIcon?.path || customPath || defaultPath
+  if (SvglIcon) {
+    return <SvglIcon className={`w-4 h-4 ${className}`} />
+  }
+
+  const fallbackPath = fallbackIconMap[normalized] || fallbackPaths.default
 
   return (
     <svg
@@ -95,7 +97,7 @@ export function TechIcon({ name, className = '' }: { name: string; className?: s
       fill="currentColor"
       className={`w-4 h-4 ${className}`}
     >
-      <path d={path} />
+      <path d={fallbackPath} />
     </svg>
   )
 }
