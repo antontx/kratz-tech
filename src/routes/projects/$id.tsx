@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from '@tanstack/react-router'
 import { ArrowLeft, ExternalLink, Calendar, Layers } from 'lucide-react'
 import { getProjectById, projects } from '@/lib/data'
 import { ArchitectureDiagram } from '@/components/ArchitectureDiagram'
+import { TechIcon } from '@/components/TechIcon'
 
 export const Route = createFileRoute('/projects/$id')({
   component: ProjectDetailPage,
@@ -70,8 +71,9 @@ function ProjectDetailPage() {
           {project.technologies.map((tech) => (
             <span
               key={tech}
-              className="px-4 py-2 bg-[#0f0f0f] border border-gray-800 rounded-lg text-gray-400 text-sm hover:border-gray-700 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-[#0f0f0f] border border-gray-800 text-gray-400 text-sm hover:border-gray-700 transition-colors"
             >
+              <TechIcon name={tech} className="text-gray-500" />
               {tech}
             </span>
           ))}
