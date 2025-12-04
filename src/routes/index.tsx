@@ -1,22 +1,10 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { Mail, Github, Linkedin } from 'lucide-react'
+import { createFileRoute, Link } from '@tanstack/react-router'
+import { Mail, Github, Linkedin, ArrowRight } from 'lucide-react'
+import { projects, awards } from '@/lib/data'
 
 export const Route = createFileRoute('/')({ component: App })
 
 function App() {
-  const projects = [
-    { name: 'AI Assistant for Vehicle Testing', desc: 'AWS · Python · Angular · TypeScript', year: '2025' },
-    { name: 'LLM Evaluation Dashboard', desc: '1st Place BMW Hackathon · AWS', year: '2024' },
-    { name: 'Business Dashboard', desc: 'Paperwork management & form generation', year: '2025' },
-    { name: 'Neural Network for Digit Recognition', desc: 'Python · Deep Learning', year: '2023' },
-  ]
-
-  const awards = [
-    { name: 'Dr. Hans Riegel Prize', org: '1st Place CS · Johannes Gutenberg University', year: '2023' },
-    { name: 'German CS Competition', org: '1st Prize · BWINF', year: '2023' },
-    { name: 'BMW Hackathon', org: '1st Place · Full Week', year: '2024' },
-    { name: 'AWS GameDay @ BMW', org: '1st Place', year: '2024' },
-  ]
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-gray-300">
@@ -53,16 +41,29 @@ function App() {
 
         {/* Right - Projects */}
         <div className="p-12 flex flex-col justify-end">
-          <p className="text-xs tracking-[0.3em] text-gray-600 mb-6">[ PROJECTS ]</p>
+          <div className="flex justify-between items-center mb-6">
+            <p className="text-xs tracking-[0.3em] text-gray-600">[ PROJECTS ]</p>
+            <Link
+              to="/projects"
+              className="text-xs text-gray-600 hover:text-white transition-colors flex items-center gap-1"
+            >
+              View All <ArrowRight className="w-3 h-3" />
+            </Link>
+          </div>
           <div className="space-y-6">
             {projects.map((p) => (
-              <div key={p.name} className="group cursor-pointer">
+              <Link
+                key={p.id}
+                to="/projects/$id"
+                params={{ id: p.id }}
+                className="group block"
+              >
                 <div className="flex justify-between items-baseline mb-1">
                   <h3 className="text-xl text-white group-hover:text-gray-400 transition-colors">{p.name}</h3>
                   <span className="text-gray-700 text-sm">{p.year}</span>
                 </div>
-                <p className="text-gray-600 text-sm">{p.desc}</p>
-              </div>
+                <p className="text-gray-600 text-sm">{p.shortDesc}</p>
+              </Link>
             ))}
           </div>
         </div>
