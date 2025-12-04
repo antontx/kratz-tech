@@ -86,6 +86,7 @@ function ProjectDetailPage() {
         </div>
         <div className="bg-[#0f0f0f] border border-gray-800 rounded-lg p-6">
           <ArchitectureDiagram
+            layers={project.architecture.layers}
             nodes={project.architecture.nodes}
             connections={project.architecture.connections}
           />
