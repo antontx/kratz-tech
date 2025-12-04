@@ -1,15 +1,13 @@
 export type ArchitectureNode = {
   id: string
   label: string
-  type: 'frontend' | 'backend' | 'database' | 'service' | 'cloud' | 'ml' | 'user'
-  x: number
-  y: number
+  level: number  // row level (0 = top)
+  column: number // position in row (0 = left)
 }
 
 export type ArchitectureConnection = {
   from: string
   to: string
-  label?: string
 }
 
 export type Project = {
@@ -41,21 +39,21 @@ export const projects: Project[] = [
     ],
     architecture: {
       nodes: [
-        { id: 'user', label: 'Engineer', type: 'user', x: 50, y: 150 },
-        { id: 'frontend', label: 'Angular App', type: 'frontend', x: 200, y: 150 },
-        { id: 'api', label: 'API Gateway', type: 'cloud', x: 350, y: 150 },
-        { id: 'lambda', label: 'Lambda\n(Python)', type: 'backend', x: 500, y: 100 },
-        { id: 'bedrock', label: 'AWS Bedrock\n(LLM)', type: 'ml', x: 650, y: 100 },
-        { id: 'dynamo', label: 'DynamoDB', type: 'database', x: 500, y: 220 },
-        { id: 's3', label: 'S3 Bucket', type: 'cloud', x: 650, y: 220 },
+        { id: 'user', label: 'Engineer', level: 0, column: 0 },
+        { id: 'frontend', label: 'Angular App', level: 0, column: 1 },
+        { id: 'api', label: 'API Gateway', level: 0, column: 2 },
+        { id: 'lambda', label: 'Lambda', level: 0, column: 3 },
+        { id: 'bedrock', label: 'AWS Bedrock', level: 1, column: 3 },
+        { id: 'dynamo', label: 'DynamoDB', level: 1, column: 2 },
+        { id: 's3', label: 'S3', level: 1, column: 1 },
       ],
       connections: [
-        { from: 'user', to: 'frontend', label: 'interacts' },
-        { from: 'frontend', to: 'api', label: 'REST' },
-        { from: 'api', to: 'lambda', label: 'invoke' },
-        { from: 'lambda', to: 'bedrock', label: 'prompt' },
-        { from: 'lambda', to: 'dynamo', label: 'read/write' },
-        { from: 'lambda', to: 's3', label: 'files' },
+        { from: 'user', to: 'frontend' },
+        { from: 'frontend', to: 'api' },
+        { from: 'api', to: 'lambda' },
+        { from: 'lambda', to: 'bedrock' },
+        { from: 'lambda', to: 'dynamo' },
+        { from: 'lambda', to: 's3' },
       ],
     },
   },
@@ -73,22 +71,22 @@ export const projects: Project[] = [
     ],
     architecture: {
       nodes: [
-        { id: 'user', label: 'Data Scientist', type: 'user', x: 50, y: 150 },
-        { id: 'frontend', label: 'React\nDashboard', type: 'frontend', x: 200, y: 150 },
-        { id: 'api', label: 'FastAPI\nBackend', type: 'backend', x: 350, y: 150 },
-        { id: 'eval', label: 'Evaluation\nEngine', type: 'service', x: 500, y: 80 },
-        { id: 'llms', label: 'LLM APIs\n(OpenAI, Claude...)', type: 'ml', x: 650, y: 80 },
-        { id: 'db', label: 'PostgreSQL', type: 'database', x: 500, y: 220 },
-        { id: 'queue', label: 'Task Queue', type: 'service', x: 350, y: 280 },
+        { id: 'user', label: 'Data Scientist', level: 0, column: 0 },
+        { id: 'frontend', label: 'React Dashboard', level: 0, column: 1 },
+        { id: 'api', label: 'FastAPI', level: 0, column: 2 },
+        { id: 'eval', label: 'Eval Engine', level: 0, column: 3 },
+        { id: 'llms', label: 'LLM APIs', level: 0, column: 4 },
+        { id: 'db', label: 'PostgreSQL', level: 1, column: 2 },
+        { id: 'queue', label: 'Task Queue', level: 1, column: 3 },
       ],
       connections: [
-        { from: 'user', to: 'frontend', label: 'uses' },
-        { from: 'frontend', to: 'api', label: 'REST' },
-        { from: 'api', to: 'eval', label: 'triggers' },
-        { from: 'eval', to: 'llms', label: 'calls' },
-        { from: 'api', to: 'db', label: 'stores' },
-        { from: 'api', to: 'queue', label: 'enqueue' },
-        { from: 'queue', to: 'eval', label: 'process' },
+        { from: 'user', to: 'frontend' },
+        { from: 'frontend', to: 'api' },
+        { from: 'api', to: 'eval' },
+        { from: 'eval', to: 'llms' },
+        { from: 'api', to: 'db' },
+        { from: 'api', to: 'queue' },
+        { from: 'queue', to: 'eval' },
       ],
     },
   },
@@ -106,23 +104,21 @@ export const projects: Project[] = [
     ],
     architecture: {
       nodes: [
-        { id: 'client', label: 'Client', type: 'user', x: 50, y: 100 },
-        { id: 'admin', label: 'Admin', type: 'user', x: 50, y: 220 },
-        { id: 'frontend', label: 'Next.js\nApp', type: 'frontend', x: 200, y: 150 },
-        { id: 'trpc', label: 'tRPC\nAPI', type: 'backend', x: 350, y: 150 },
-        { id: 'prisma', label: 'Prisma\nORM', type: 'service', x: 500, y: 150 },
-        { id: 'db', label: 'PostgreSQL', type: 'database', x: 650, y: 150 },
-        { id: 'pdf', label: 'PDF\nGenerator', type: 'service', x: 350, y: 280 },
-        { id: 'email', label: 'Email\nService', type: 'cloud', x: 500, y: 280 },
+        { id: 'users', label: 'Client / Admin', level: 0, column: 0 },
+        { id: 'frontend', label: 'Next.js App', level: 0, column: 1 },
+        { id: 'trpc', label: 'tRPC API', level: 0, column: 2 },
+        { id: 'prisma', label: 'Prisma ORM', level: 0, column: 3 },
+        { id: 'db', label: 'PostgreSQL', level: 0, column: 4 },
+        { id: 'pdf', label: 'PDF Generator', level: 1, column: 2 },
+        { id: 'email', label: 'Email Service', level: 1, column: 3 },
       ],
       connections: [
-        { from: 'client', to: 'frontend', label: 'portal' },
-        { from: 'admin', to: 'frontend', label: 'manage' },
-        { from: 'frontend', to: 'trpc', label: 'RPC' },
+        { from: 'users', to: 'frontend' },
+        { from: 'frontend', to: 'trpc' },
         { from: 'trpc', to: 'prisma' },
         { from: 'prisma', to: 'db' },
-        { from: 'trpc', to: 'pdf', label: 'generate' },
-        { from: 'trpc', to: 'email', label: 'send' },
+        { from: 'trpc', to: 'pdf' },
+        { from: 'trpc', to: 'email' },
       ],
     },
   },
@@ -140,22 +136,22 @@ export const projects: Project[] = [
     ],
     architecture: {
       nodes: [
-        { id: 'input', label: 'Input Layer\n(784 pixels)', type: 'ml', x: 100, y: 150 },
-        { id: 'hidden1', label: 'Hidden Layer 1\n(128 neurons)', type: 'ml', x: 280, y: 100 },
-        { id: 'hidden2', label: 'Hidden Layer 2\n(64 neurons)', type: 'ml', x: 460, y: 100 },
-        { id: 'output', label: 'Output Layer\n(10 classes)', type: 'ml', x: 640, y: 150 },
-        { id: 'data', label: 'MNIST\nDataset', type: 'database', x: 100, y: 280 },
-        { id: 'train', label: 'Training\nLoop', type: 'service', x: 370, y: 220 },
-        { id: 'viz', label: 'Matplotlib\nViz', type: 'frontend', x: 640, y: 280 },
+        { id: 'data', label: 'MNIST Dataset', level: 0, column: 0 },
+        { id: 'input', label: 'Input Layer', level: 0, column: 1 },
+        { id: 'hidden1', label: 'Hidden Layer 1', level: 0, column: 2 },
+        { id: 'hidden2', label: 'Hidden Layer 2', level: 0, column: 3 },
+        { id: 'output', label: 'Output Layer', level: 0, column: 4 },
+        { id: 'train', label: 'Training Loop', level: 1, column: 2 },
+        { id: 'viz', label: 'Visualization', level: 1, column: 4 },
       ],
       connections: [
-        { from: 'data', to: 'input', label: 'feed' },
-        { from: 'input', to: 'hidden1', label: 'forward' },
-        { from: 'hidden1', to: 'hidden2', label: 'ReLU' },
-        { from: 'hidden2', to: 'output', label: 'softmax' },
-        { from: 'train', to: 'hidden1', label: 'backprop' },
-        { from: 'train', to: 'hidden2', label: 'backprop' },
-        { from: 'output', to: 'viz', label: 'results' },
+        { from: 'data', to: 'input' },
+        { from: 'input', to: 'hidden1' },
+        { from: 'hidden1', to: 'hidden2' },
+        { from: 'hidden2', to: 'output' },
+        { from: 'train', to: 'hidden1' },
+        { from: 'train', to: 'hidden2' },
+        { from: 'output', to: 'viz' },
       ],
     },
   },
