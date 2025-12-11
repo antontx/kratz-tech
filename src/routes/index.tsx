@@ -1,10 +1,19 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { Mail, Github, Linkedin, ArrowRight } from 'lucide-react'
 import { projects, awards } from '@/lib/data'
+import { fetchGitHubContributions } from '@/lib/github'
+import { ContributionGrid } from '@/components/contribution-grid'
 
-export const Route = createFileRoute('/')({ component: App })
+export const Route = createFileRoute('/')({
+  component: App,
+  loader: async () => {
+    const contributions = await fetchGitHubContributions('antontx', 30)
+    return { contributions }
+  },
+})
 
 function App() {
+  const { contributions } = Route.useLoaderData()
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-gray-300">
@@ -88,16 +97,19 @@ function App() {
       {/* Links - Full Width Footer */}
       <div className="border-t border-gray-800 p-12">
         <p className="text-xs tracking-[0.3em] text-gray-600 mb-6">[ LINKS ]</p>
-        <div className="flex flex-wrap gap-8">
-          <a href="mailto:nils@kratz.tech" className="text-gray-400 hover:text-white transition-colors">
-            nils@kratz.tech
-          </a>
-          <a href="https://github.com/antontx" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-            GitHub
-          </a>
-          <a href="https://www.linkedin.com/in/nakratz/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-            LinkedIn
-          </a>
+        <div className="flex flex-wrap items-end justify-between gap-8">
+          <div className="flex flex-wrap gap-8">
+            <a href="mailto:nils@kratz.tech" className="text-gray-400 hover:text-white transition-colors">
+              nils@kratz.tech
+            </a>
+            <a href="https://github.com/antontx" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+              GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/nakratz/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+              LinkedIn
+            </a>
+          </div>
+          <ContributionGrid data={contributions} />
         </div>
       </div>
     </div>
