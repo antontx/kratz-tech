@@ -1,13 +1,13 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { Mail, Github, Linkedin, ArrowRight } from 'lucide-react'
 import { projects, awards } from '@/lib/data'
-import { fetchGitHubContributions } from '@/lib/github'
+import { getContributions } from '@/lib/github'
 import { ContributionGrid } from '@/components/contribution-grid'
 
 export const Route = createFileRoute('/')({
   component: App,
   loader: async () => {
-    const contributions = await fetchGitHubContributions('antontx', 30)
+    const contributions = await getContributions()
     return { contributions }
   },
 })

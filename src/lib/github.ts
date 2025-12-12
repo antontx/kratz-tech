@@ -1,4 +1,5 @@
 import { eachDayOfInterval, formatISO, subDays } from 'date-fns'
+import { createServerFn } from '@tanstack/react-start'
 
 export type ContributionDay = {
   date: string
@@ -6,19 +7,32 @@ export type ContributionDay = {
   level: number
 }
 
+// In-memory cache for contributions
+let cache: { data: ContributionDay[]; timestamp: number } | null = null
+const CACHE_TTL = 3600000 // 1 hour
+
+// Server function for fetching contributions with caching
+export const getContributions = createServerFn({ method: 'GET' }).handler(
+  async () => {
+    if (cache && Date.now() - cache.timestamp < CACHE_TTL) {
+      return cache.data
+    }
+
+    const data = await fetchGitHubContributions('antontx', 30)
+    cache = { data, timestamp: Date.now() }
+    return data
+  }
+)
+
 // Fetch GitHub contributions from the public contributions page
-export async function fetchGitHubContributions(username: string, days = 30): Promise<ContributionDay[]> {
+async function fetchGitHubContributions(username: string, days = 30): Promise<ContributionDay[]> {
   const endDate = new Date()
   const startDate = subDays(endDate, days - 1)
 
   try {
-    // Use GitHub's public contributions endpoint (scraped from the SVG)
     const response = await fetch(
       `https://github.com/users/${username}/contributions`,
-      {
-        headers: { 'Accept': 'text/html' },
-        next: { revalidate: 3600 } // Cache for 1 hour
-      }
+      { headers: { 'Accept': 'text/html' } }
     )
 
     if (!response.ok) {
@@ -26,13 +40,9 @@ export async function fetchGitHubContributions(username: string, days = 30): Pro
     }
 
     const html = await response.text()
-
-    // Parse contribution data from the HTML
-    const contributions = parseContributionsFromHTML(html, startDate, endDate)
-    return contributions
+    return parseContributionsFromHTML(html, startDate, endDate)
   } catch (error) {
     console.error('Error fetching GitHub contributions:', error)
-    // Return empty data on error
     return eachDayOfInterval({ start: startDate, end: endDate }).map(date => ({
       date: formatISO(date, { representation: 'date' }),
       count: 0,
