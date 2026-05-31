@@ -13,7 +13,6 @@
     "check": "biome check"
   },
   "dependencies": {
-    "@radix-ui/react-tooltip": "^1.2.8",
     "@tailwindcss/vite": "^4.0.6",
     "@tanstack/react-devtools": "^0.7.0",
     "@tanstack/react-router": "^1.132.0",
@@ -23,10 +22,10 @@
     "@tanstack/router-plugin": "^1.132.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "date-fns": "^4.1.0",
     "geist": "^1.5.1",
     "lucide-react": "^0.544.0",
     "nitro": "latest",
+    "radix-ui": "^1.4.3",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "tailwind-merge": "^3.0.2",
