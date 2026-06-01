@@ -120,17 +120,49 @@ function InvertingCursor() {
 			return;
 		}
 
+		const ease = 0.18;
+		const settleDistance = 0.1;
 		let frame = 0;
-		let x = 0;
-		let y = 0;
+		let hasPosition = false;
+		let targetX = 0;
+		let targetY = 0;
+		let currentX = 0;
+		let currentY = 0;
 
-		function updatePosition() {
+		function renderCursor() {
 			if (!cursor) {
 				return;
 			}
 
-			cursor.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
+			cursor.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate(-50%, -50%)`;
+		}
+
+		function animateCursor() {
+			const deltaX = targetX - currentX;
+			const deltaY = targetY - currentY;
+
+			currentX += deltaX * ease;
+			currentY += deltaY * ease;
+			renderCursor();
+
+			if (
+				Math.abs(deltaX) > settleDistance ||
+				Math.abs(deltaY) > settleDistance
+			) {
+				frame = window.requestAnimationFrame(animateCursor);
+				return;
+			}
+
+			currentX = targetX;
+			currentY = targetY;
+			renderCursor();
 			frame = 0;
+		}
+
+		function startAnimation() {
+			if (!frame) {
+				frame = window.requestAnimationFrame(animateCursor);
+			}
 		}
 
 		function moveCursor(event: PointerEvent) {
@@ -138,17 +170,23 @@ function InvertingCursor() {
 				return;
 			}
 
-			x = event.clientX;
-			y = event.clientY;
+			targetX = event.clientX;
+			targetY = event.clientY;
 			cursor.dataset.visible = "true";
 
-			if (!frame) {
-				frame = window.requestAnimationFrame(updatePosition);
+			if (!hasPosition) {
+				currentX = targetX;
+				currentY = targetY;
+				hasPosition = true;
+				renderCursor();
 			}
+
+			startAnimation();
 		}
 
 		function hideCursor() {
 			cursor.dataset.visible = "false";
+			hasPosition = false;
 		}
 
 		document.documentElement.classList.add("has-inverting-cursor");
