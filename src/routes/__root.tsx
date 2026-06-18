@@ -8,11 +8,11 @@ export const Route = createRootRoute({
 			{ charSet: "utf-8" },
 			{ name: "viewport", content: "width=device-width, initial-scale=1" },
 			{ name: "color-scheme", content: "dark" },
-			{ title: "Nils Kratz" },
+			{ title: "nils kratz" },
 			{
 				name: "description",
 				content:
-					"Nils Kratz is a Munich-based data science and AI engineer building calm software for rough workflows.",
+					"nils kratz builds technical systems for complex problems, with a current focus on long-horizon task mining, cryptographics, and enterprise platform architecture.",
 			},
 		],
 		links: [

@@ -27,25 +27,20 @@ function HomePage() {
 	return (
 		<main className="flex min-h-dvh flex-col bg-background text-foreground">
 			<InvertingCursor />
-			<h1 className="sr-only">Nils Kratz</h1>
+			<h1 className="sr-only">nils kratz</h1>
 			<article className="w-full max-w-2xl px-6 py-8 sm:px-10 sm:py-12 lg:px-16 lg:py-16">
 				<p className="text-pretty text-base leading-7 text-foreground/80">
-					Hey, I&apos;m <ProfileHoverCard />. I turn ambiguous business and
-					engineering problems into calm software: AI systems, data products,
-					and internal tools that make rough workflows feel obvious. Right now I
-					work in data science and AI at{" "}
-					<span className="font-medium text-foreground">BMW Group</span> in
-					Munich, usually somewhere between Python, TypeScript, cloud
-					infrastructure, and product thinking. I like dense interfaces, honest
-					prototypes, and teams that can explain the hard part in a sentence.
-					You can find me on{" "}
+					hey, i&apos;m <ProfileHoverCard />. i have a passion for complex
+					problem solving and currently care about long-horizon task mining,
+					cryptographics, and enterprise platform architecture. you can find me
+					on{" "}
 					<a
 						href={linkedInUrl}
 						target="_blank"
 						rel="noreferrer"
 						className="rounded-sm text-foreground underline decoration-border decoration-2 underline-offset-4 transition-colors hover:bg-accent hover:text-accent-foreground hover:no-underline focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
 					>
-						LinkedIn
+						linkedin
 					</a>
 					.
 				</p>
@@ -81,7 +76,7 @@ function HomePage() {
 						rel="noreferrer"
 						className={footerLinkClass}
 					>
-						GitHub
+						github
 					</a>
 					<a
 						href={linkedInUrl}
@@ -89,7 +84,7 @@ function HomePage() {
 						rel="noreferrer"
 						className={footerLinkClass}
 					>
-						LinkedIn
+						linkedin
 					</a>
 					<button
 						type="button"
@@ -249,7 +244,7 @@ function ProfileHoverCard() {
 					href={linkedInUrl}
 					target="_blank"
 					rel="noreferrer"
-					aria-label="Nils Kratz on LinkedIn"
+					aria-label="nils kratz on linkedin"
 					onFocus={openCard}
 					onBlur={scheduleClose}
 					onMouseEnter={openCard}
@@ -259,12 +254,12 @@ function ProfileHoverCard() {
 					<Avatar className="size-[1.15em] rounded-full">
 						<AvatarImage
 							src={profileImage}
-							alt="Nils Kratz"
+							alt="nils kratz"
 							className="object-cover"
 						/>
 						<AvatarFallback className="text-[0.5em]">NK</AvatarFallback>
 					</Avatar>
-					<span className="leading-none">Nils</span>
+					<span className="leading-none">nils</span>
 				</a>
 			</HoverCardTrigger>
 			<HoverCardContent
@@ -282,21 +277,22 @@ function ProfileHoverCard() {
 					<Avatar className="size-14 rounded-md border border-border">
 						<AvatarImage
 							src={profileImage}
-							alt="Nils Kratz"
+							alt="nils kratz"
 							className="object-cover"
 						/>
 						<AvatarFallback>NK</AvatarFallback>
 					</Avatar>
 					<div className="min-w-0 pt-0.5">
-						<p className="text-sm font-semibold leading-none">Nils Kratz</p>
+						<p className="text-sm font-semibold leading-none">nils kratz</p>
 						<p className="mt-2 flex items-center gap-1.5 text-xs text-muted-foreground">
 							<MapPin className="size-3.5" aria-hidden="true" />
-							Munich, Germany
+							munich, germany
 						</p>
 					</div>
 				</div>
 				<p className="mt-3 text-sm leading-6 text-muted-foreground">
-					Data science, AI systems, and product-minded engineering.
+					long-horizon task mining, cryptographics, and enterprise platform
+					architecture.
 				</p>
 				<Button
 					asChild
@@ -321,7 +317,7 @@ function ProfileHoverCard() {
 					<a href={linkedInUrl} target="_blank" rel="noreferrer">
 						<span className="inline-flex items-center gap-2">
 							<Linkedin className="size-4" aria-hidden="true" />
-							LinkedIn
+							linkedin
 						</span>
 						<ArrowUpRight className="size-4" aria-hidden="true" />
 					</a>
