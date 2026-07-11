@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Linkedin, Mail, MapPin } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -70,6 +70,9 @@ function HomePage() {
 					aria-label="Footer links"
 					className="flex flex-wrap gap-x-4 gap-y-2"
 				>
+					<Link to="/reading-watch-list" className={footerLinkClass}>
+						reading / watch list
+					</Link>
 					<a
 						href={githubUrl}
 						target="_blank"

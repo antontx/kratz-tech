@@ -9,8 +9,14 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ReadingWatchListRouteImport } from './routes/reading-watch-list'
 import { Route as IndexRouteImport } from './routes/index'
 
+const ReadingWatchListRoute = ReadingWatchListRouteImport.update({
+  id: '/reading-watch-list',
+  path: '/reading-watch-list',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +25,39 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/reading-watch-list': typeof ReadingWatchListRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/reading-watch-list': typeof ReadingWatchListRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/reading-watch-list': typeof ReadingWatchListRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/reading-watch-list'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/reading-watch-list'
+  id: '__root__' | '/' | '/reading-watch-list'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ReadingWatchListRoute: typeof ReadingWatchListRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/reading-watch-list': {
+      id: '/reading-watch-list'
+      path: '/reading-watch-list'
+      fullPath: '/reading-watch-list'
+      preLoaderRoute: typeof ReadingWatchListRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +70,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ReadingWatchListRoute: ReadingWatchListRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
