@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowLeft, ArrowUpRight, BookOpen, Play } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 export const Route = createFileRoute("/reading-watch-list")({
 	component: ReadingWatchListPage,
@@ -18,18 +18,14 @@ const entries = [
 	{
 		title: "How Brian Armstrong Built Coinbase",
 		href: "https://www.youtube.com/watch?v=bzYQWBBX7wU",
-		type: "watch",
 		source: "Relentless · YouTube",
 		date: "23 Mar 2026",
-		icon: Play,
 	},
 	{
 		title: "Do Things that Don't Scale",
 		href: "https://www.paulgraham.com/ds.html",
-		type: "read",
 		source: "Paul Graham",
 		date: "Jul 2013",
-		icon: BookOpen,
 	},
 ];
 
@@ -54,41 +50,27 @@ function ReadingWatchListPage() {
 					</p>
 				</header>
 
-				<section
+				<ul
 					aria-label="reading and watch list"
-					className="border-border border-t"
+					className="list-disc space-y-3 pl-5 text-base leading-7 marker:text-muted-foreground"
 				>
-					{entries.map((entry) => {
-						const Icon = entry.icon;
-
-						return (
+					{entries.map((entry) => (
+						<li key={entry.href} className="pl-1">
 							<a
-								key={entry.href}
 								href={entry.href}
 								target="_blank"
 								rel="noreferrer"
-								className="group grid min-h-32 grid-cols-[1fr_auto] gap-5 border-border border-b py-6 transition-colors hover:bg-accent/50 focus-visible:bg-accent/50 focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40 sm:px-4"
+								className="rounded-sm text-foreground underline decoration-border decoration-2 underline-offset-4 transition-colors hover:bg-accent hover:text-accent-foreground hover:no-underline focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
 							>
-								<span>
-									<span className="mb-2 flex items-center gap-2 text-muted-foreground text-xs uppercase tracking-wider">
-										<Icon className="size-3.5" aria-hidden="true" />
-										{entry.type}
-									</span>
-									<span className="block text-lg leading-7 text-foreground">
-										{entry.title}
-									</span>
-									<span className="mt-2 block text-muted-foreground text-sm">
-										{entry.source} · {entry.date}
-									</span>
-								</span>
-								<ArrowUpRight
-									className="mt-1 size-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-									aria-hidden="true"
-								/>
+								{entry.title}
 							</a>
-						);
-					})}
-				</section>
+							<span className="text-muted-foreground">
+								{" "}
+								— {entry.source} · {entry.date}
+							</span>
+						</li>
+					))}
+				</ul>
 			</div>
 		</main>
 	);
