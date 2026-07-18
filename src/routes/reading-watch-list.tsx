@@ -29,13 +29,11 @@ const entries = [
 	},
 	{
 		title: "Thinking, Fast and Slow",
-		href: "https://us.macmillan.com/books/9780374275631/thinkingfastandslow/",
 		source: "Daniel Kahneman",
 		date: "2011",
 	},
 	{
 		title: "Shoe Dog",
-		href: "https://www.simonandschuster.com/books/Shoe-Dog/Phil-Knight/9781501135910",
 		source: "Phil Knight",
 		date: "2016",
 	},
@@ -67,15 +65,19 @@ function ReadingWatchListPage() {
 					className="list-disc space-y-3 pl-5 text-base leading-7 marker:text-muted-foreground"
 				>
 					{entries.map((entry) => (
-						<li key={entry.href} className="pl-1">
-							<a
-								href={entry.href}
-								target="_blank"
-								rel="noreferrer"
-								className="rounded-sm text-foreground underline decoration-border decoration-2 underline-offset-4 transition-colors hover:bg-accent hover:text-accent-foreground hover:no-underline focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
-							>
-								{entry.title}
-							</a>
+						<li key={entry.title} className="pl-1">
+							{"href" in entry ? (
+								<a
+									href={entry.href}
+									target="_blank"
+									rel="noreferrer"
+									className="rounded-sm text-foreground underline decoration-border decoration-2 underline-offset-4 transition-colors hover:bg-accent hover:text-accent-foreground hover:no-underline focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
+								>
+									{entry.title}
+								</a>
+							) : (
+								<span className="text-foreground">{entry.title}</span>
+							)}
 							<span className="text-muted-foreground">
 								{" "}
 								— {entry.source} · {entry.date}
