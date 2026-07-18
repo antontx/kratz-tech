@@ -27,6 +27,18 @@ const entries = [
 		source: "Paul Graham",
 		date: "Jul 2013",
 	},
+	{
+		title: "Thinking, Fast and Slow",
+		href: "https://us.macmillan.com/books/9780374275631/thinkingfastandslow/",
+		source: "Daniel Kahneman",
+		date: "2011",
+	},
+	{
+		title: "Shoe Dog",
+		href: "https://www.simonandschuster.com/books/Shoe-Dog/Phil-Knight/9781501135910",
+		source: "Phil Knight",
+		date: "2016",
+	},
 ];
 
 function ReadingWatchListPage() {
