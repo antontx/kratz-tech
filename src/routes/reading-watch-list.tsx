@@ -16,6 +16,12 @@ export const Route = createFileRoute("/reading-watch-list")({
 
 const entries = [
 	{
+		title: "Sell the Truth",
+		href: "https://naval.substack.com/p/sell",
+		source: "Naval · Substack",
+		date: "14 May 2026",
+	},
+	{
 		title: "How Brian Armstrong Built Coinbase",
 		href: "https://www.youtube.com/watch?v=bzYQWBBX7wU",
 		source: "Relentless · YouTube",
