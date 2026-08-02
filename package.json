@@ -4,8 +4,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev --port 3000",
-    "build": "bun run vite build",
-    "start": "bun .output/server/index.mjs",
+    "build": "vite build",
+    "cloudflare:dev": "bun run build && wrangler dev",
+    "cloudflare:deploy": "bun run build && wrangler deploy --strict",
     "serve": "vite preview",
     "test": "vitest run",
     "format": "biome format",
@@ -23,6 +24,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "geist": "^1.5.1",
+    "h3": "2.0.1-rc.5",
     "lucide-react": "^0.544.0",
     "nitro": "latest",
     "radix-ui": "^1.4.3",
@@ -46,6 +48,7 @@
     "typescript": "^5.7.2",
     "vite": "^7.1.7",
     "vitest": "^3.0.5",
-    "web-vitals": "^5.1.0"
+    "web-vitals": "^5.1.0",
+    "wrangler": "4.118.0"
   }
 }

@@ -1,0 +1,17 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "kratz-tech",
+  "account_id": "43a838e1ff61cdd5c2076249c65afbfd",
+  "compatibility_date": "2026-08-02",
+  "workers_dev": true,
+  "preview_urls": true,
+  "routes": [
+    {
+      "pattern": "kratz.tech/*",
+      "zone_name": "kratz.tech"
+    }
+  ],
+  "observability": {
+    "enabled": true
+  }
+}

@@ -1,12 +1,12 @@
-Welcome to your new TanStack app! 
+# Kratz Tech
 
 # Getting Started
 
-To run this application:
+Install dependencies and start the local development server:
 
 ```bash
-bun install
-bun --bun run start
+bun install --frozen-lockfile
+bun run dev
 ```
 
 # Building For Production
@@ -14,8 +14,28 @@ bun --bun run start
 To build this application for production:
 
 ```bash
-bun --bun run build
+bun run build
 ```
+
+## Cloudflare deployment
+
+Production runs as a Nitro module Worker. Wrangler reads `wrangler.jsonc`, while
+the Nitro build generates the Worker entry point and static asset binding.
+
+Authenticate once and deploy the configured Worker and `kratz.tech/*` route:
+
+```bash
+wrangler login
+bun run cloudflare:deploy
+```
+
+To exercise the generated Worker locally before deploying:
+
+```bash
+bun run cloudflare:dev
+```
+
+The Worker remains available at its `workers.dev` URL for isolated verification.
 
 ## Testing
 
