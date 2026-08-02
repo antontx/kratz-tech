@@ -117,6 +117,7 @@ function InvertingCursor() {
 		if (!cursor || !finePointer.matches || reducedMotion.matches) {
 			return;
 		}
+		const activeCursor = cursor;
 
 		const ease = 0.18;
 		const settleDistance = 0.1;
@@ -128,11 +129,7 @@ function InvertingCursor() {
 		let currentY = 0;
 
 		function renderCursor() {
-			if (!cursor) {
-				return;
-			}
-
-			cursor.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate(-50%, -50%)`;
+			activeCursor.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate(-50%, -50%)`;
 		}
 
 		function animateCursor() {
@@ -170,7 +167,7 @@ function InvertingCursor() {
 
 			targetX = event.clientX;
 			targetY = event.clientY;
-			cursor.dataset.visible = "true";
+			activeCursor.dataset.visible = "true";
 
 			if (!hasPosition) {
 				currentX = targetX;
@@ -183,7 +180,7 @@ function InvertingCursor() {
 		}
 
 		function hideCursor() {
-			cursor.dataset.visible = "false";
+			activeCursor.dataset.visible = "false";
 			hasPosition = false;
 		}
 
