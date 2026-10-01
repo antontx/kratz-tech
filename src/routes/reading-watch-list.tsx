@@ -16,6 +16,11 @@ export const Route = createFileRoute("/reading-watch-list")({
 
 const entries = [
 	{
+		title: "High Agency in 30 Minutes",
+		href: "https://www.highagency.com/",
+		source: "George Mack · Essay",
+	},
+	{
 		title: "Sell the Truth",
 		href: "https://naval.substack.com/p/sell",
 		source: "Naval · Substack",
@@ -86,7 +91,8 @@ function ReadingWatchListPage() {
 							)}
 							<span className="text-muted-foreground">
 								{" "}
-								— {entry.source} · {entry.date}
+								— {entry.source}
+								{entry.date && <> · {entry.date}</>}
 							</span>
 						</li>
 					))}
