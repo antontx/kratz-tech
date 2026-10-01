@@ -17,7 +17,7 @@ const linkedInUrl = "https://www.linkedin.com/in/nakratz/";
 const githubUrl = "https://github.com/antontx";
 const emailUrl = "mailto:nils@kratz.tech";
 const profileImage = "/nils-profile.jpg";
-const footerLinkClass =
+const siteLinkClass =
 	"cursor-pointer rounded-sm p-0 text-muted-foreground underline decoration-border decoration-2 underline-offset-4 transition-colors hover:bg-accent hover:text-accent-foreground hover:no-underline focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40";
 
 function HomePage() {
@@ -28,79 +28,91 @@ function HomePage() {
 		<main className="flex min-h-dvh flex-col bg-background text-foreground">
 			<InvertingCursor />
 			<h1 className="sr-only">nils kratz</h1>
-			<article className="w-full max-w-2xl px-6 py-8 sm:px-10 sm:py-12 lg:px-16 lg:py-16">
-				<p className="text-pretty text-base leading-7 text-foreground/80">
-					hey, i&apos;m <ProfileHoverCard />. i have a passion for complex
-					problem solving and currently care about long-horizon task mining,
-					cryptographics, and enterprise platform architecture. you can find me
-					on{" "}
-					<a
-						href={linkedInUrl}
-						target="_blank"
-						rel="noreferrer"
-						className="rounded-sm text-foreground underline decoration-border decoration-2 underline-offset-4 transition-colors hover:bg-accent hover:text-accent-foreground hover:no-underline focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
+			<div className="grid grid-cols-1 items-start gap-8 px-6 py-8 sm:grid-cols-[minmax(0,1fr)_auto] sm:gap-16 sm:px-10 sm:py-12 lg:px-16 lg:py-16">
+				<article className="w-full max-w-[34rem]">
+					<p className="text-pretty text-base leading-7 text-foreground/80">
+						hey, i&apos;m <ProfileHoverCard />. i have a passion for complex
+						problem solving and currently care about long-horizon task mining,
+						cryptographics, and enterprise platform architecture. you can find
+						me on{" "}
+						<a
+							href={linkedInUrl}
+							target="_blank"
+							rel="noreferrer"
+							className="rounded-sm text-foreground underline decoration-border decoration-2 underline-offset-4 transition-colors hover:bg-accent hover:text-accent-foreground hover:no-underline focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
+						>
+							linkedin
+						</a>
+						.
+					</p>
+				</article>
+				<aside className="w-full text-right text-sm text-muted-foreground sm:w-56">
+					<nav
+						aria-label="Site links"
+						className="flex flex-col items-end gap-3"
 					>
-						linkedin
-					</a>
-					.
-				</p>
-			</article>
-			<footer className="mt-auto w-full max-w-2xl px-6 pb-8 text-sm text-muted-foreground sm:px-10 lg:px-16">
-				<section
-					id={impressumId}
-					hidden={!impressumOpen}
-					className="mb-4 space-y-4 border-border/60 border-t pt-4"
-				>
-					<div>
-						<p className="font-medium text-foreground">Impressum</p>
-						<p>Angaben nach § 5 DDG</p>
-					</div>
-					<div>
-						<p>KRATZ Tech UG (haftungsbeschränkt)</p>
-						<p>Moritzstr. 75</p>
-						<p>55130 Mainz</p>
-						<p>Deutschland</p>
-					</div>
-					<div>
-						<p>Vertreten durch: Nils Anton Kratz</p>
-						<p>E-Mail: nils@kratz.tech</p>
-					</div>
-				</section>
-				<nav
-					aria-label="Footer links"
-					className="flex flex-wrap gap-x-4 gap-y-2"
-				>
-					<Link to="/reading-watch-list" className={footerLinkClass}>
-						reading / watch list
-					</Link>
-					<a
-						href={githubUrl}
-						target="_blank"
-						rel="noreferrer"
-						className={footerLinkClass}
+						<Link to="/reading-watch-list" className={siteLinkClass}>
+							reading / watch list
+						</Link>
+						<a
+							href={githubUrl}
+							target="_blank"
+							rel="noreferrer"
+							className={siteLinkClass}
+						>
+							github
+						</a>
+						<a
+							href={linkedInUrl}
+							target="_blank"
+							rel="noreferrer"
+							className={siteLinkClass}
+						>
+							linkedin
+						</a>
+						<button
+							type="button"
+							aria-controls={impressumId}
+							aria-expanded={impressumOpen}
+							className={siteLinkClass}
+							onClick={() => {
+								setImpressumOpen((open) => !open);
+							}}
+						>
+							Impressum
+						</button>
+					</nav>
+					<section
+						id={impressumId}
+						hidden={!impressumOpen}
+						className="mt-6 space-y-4 border-border/60 border-t pt-4 text-xs leading-6"
 					>
-						github
-					</a>
-					<a
-						href={linkedInUrl}
-						target="_blank"
-						rel="noreferrer"
-						className={footerLinkClass}
-					>
-						linkedin
-					</a>
-					<button
-						type="button"
-						aria-controls={impressumId}
-						aria-expanded={impressumOpen}
-						className={footerLinkClass}
-						onClick={() => {
-							setImpressumOpen((open) => !open);
-						}}
-					>
-						Impressum
-					</button>
-				</nav>
+						<div>
+							<p className="font-medium text-foreground">Impressum</p>
+							<p>Angaben nach § 5 DDG</p>
+						</div>
+						<div>
+							<p>KRATZ Tech UG (haftungsbeschränkt)</p>
+							<p>Moritzstr. 75</p>
+							<p>55130 Mainz</p>
+							<p>Deutschland</p>
+						</div>
+						<div>
+							<p>Vertreten durch: Nils Anton Kratz</p>
+							<p>E-Mail: nils@kratz.tech</p>
+						</div>
+					</section>
+				</aside>
+			</div>
+			<footer className="mt-auto w-full overflow-hidden pt-16">
+				<img
+					src="/swiss-alps-dither.webp"
+					alt="Dither art of the Swiss Alps, with the Matterhorn rising on the right."
+					width={2172}
+					height={724}
+					decoding="async"
+					className="block h-[clamp(15rem,33.333vw,40rem)] w-full select-none object-cover object-[78%_bottom] grayscale"
+				/>
 			</footer>
 		</main>
 	);
