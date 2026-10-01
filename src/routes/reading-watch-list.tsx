@@ -59,7 +59,7 @@ function ReadingWatchListPage() {
 					className="mb-14 inline-flex min-h-11 items-center gap-2 rounded-sm text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
 				>
 					<ArrowLeft className="size-4" aria-hidden="true" />
-					back home
+					back
 				</Link>
 
 				<header className="mb-10">
