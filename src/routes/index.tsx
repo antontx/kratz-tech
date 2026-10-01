@@ -106,12 +106,12 @@ function HomePage() {
 			</div>
 			<footer className="mt-auto w-full overflow-hidden pt-16">
 				<img
-					src="/swiss-alps-dither.webp"
+					src="/swiss-alps-abstract.webp"
 					alt="Dither art of the Swiss Alps, with the Matterhorn rising on the right."
 					width={2172}
 					height={724}
 					decoding="async"
-					className="block h-[clamp(15rem,33.333vw,40rem)] w-full select-none object-cover object-[78%_bottom] grayscale"
+					className="block h-[clamp(15rem,33.333vw,40rem)] w-full select-none object-cover object-[78%_bottom] opacity-60 grayscale [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_65%,transparent_98%)]"
 				/>
 			</footer>
 		</main>
