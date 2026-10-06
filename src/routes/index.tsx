@@ -46,7 +46,7 @@ function HomePage() {
 						.
 					</p>
 				</article>
-				<aside className="w-full text-right text-sm text-muted-foreground sm:w-56">
+				<aside className="relative w-full text-right text-sm text-muted-foreground sm:w-56">
 					<nav
 						aria-label="Site links"
 						className="flex flex-col items-end gap-3"
@@ -85,7 +85,7 @@ function HomePage() {
 					<section
 						id={impressumId}
 						hidden={!impressumOpen}
-						className="mt-6 space-y-4 border-border/60 border-t pt-4 text-xs leading-6"
+						className="absolute top-full right-0 z-10 mt-6 w-full space-y-4 border-border/60 border-t bg-background/95 pt-4 text-xs leading-6"
 					>
 						<div>
 							<p className="font-medium text-foreground">Impressum</p>
