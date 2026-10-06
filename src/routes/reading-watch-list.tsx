@@ -16,6 +16,11 @@ export const Route = createFileRoute("/reading-watch-list")({
 
 const entries = [
 	{
+		title: "Fast",
+		href: "https://patrickcollison.com/fast",
+		source: "Patrick Collison",
+	},
+	{
 		title: "High Agency in 30 Minutes",
 		href: "https://www.highagency.com/",
 		source: "George Mack · Essay",
