@@ -202,6 +202,13 @@
     letter-spacing: 0;
   }
 
+  @media (hover: hover) and (pointer: fine) {
+    html,
+    body {
+      overscroll-behavior-y: none;
+    }
+  }
+
   ::selection {
     background: color-mix(in oklch, var(--primary) 22%, transparent);
   }
