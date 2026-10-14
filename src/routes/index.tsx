@@ -31,10 +31,18 @@ function HomePage() {
 			<div className="grid grid-cols-1 items-start gap-8 px-6 py-8 sm:grid-cols-[minmax(0,1fr)_auto] sm:gap-16 sm:px-10 sm:py-12 lg:px-16 lg:py-16">
 				<article className="w-full max-w-[34rem]">
 					<p className="text-pretty text-base leading-7 text-foreground/80">
-						hey, i&apos;m <ProfileHoverCard />. i have a passion for complex
-						problem solving and currently care about long-horizon task mining,
-						cryptographics, and enterprise platform architecture. you can find
-						me on{" "}
+						hey, i&apos;m <ProfileHoverCard />. i&apos;m building{" "}
+						<a
+							href="https://alexandria.so/about"
+							target="_blank"
+							rel="noreferrer"
+							className="rounded-sm text-foreground underline decoration-border decoration-2 underline-offset-4 transition-colors hover:bg-accent hover:text-accent-foreground hover:no-underline focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
+						>
+							alexandria
+						</a>{" "}
+						in munich. we help ai agents learn how experts work, using
+						vision-language models and confidential compute to keep that work
+						private. you can find me on{" "}
 						<a
 							href={linkedInUrl}
 							target="_blank"
@@ -303,8 +311,7 @@ function ProfileHoverCard() {
 					</div>
 				</div>
 				<p className="mt-3 text-sm leading-6 text-muted-foreground">
-					long-horizon task mining, cryptographics, and enterprise platform
-					architecture.
+					co-founder at alexandria. helping ai agents learn how experts work.
 				</p>
 				<Button
 					asChild
