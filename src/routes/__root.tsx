@@ -8,11 +8,11 @@ export const Route = createRootRoute({
 			{ charSet: "utf-8" },
 			{ name: "viewport", content: "width=device-width, initial-scale=1" },
 			{ name: "color-scheme", content: "dark" },
-			{ title: "nils kratz" },
+			{ title: "nils anton kratz" },
 			{
 				name: "description",
 				content:
-					"nils kratz builds technical systems for complex problems, with a current focus on long-horizon task mining, cryptographics, and enterprise platform architecture.",
+					"nils anton kratz builds technical systems for complex problems, with a current focus on long-horizon task mining, cryptographics, and enterprise platform architecture.",
 			},
 		],
 		links: [

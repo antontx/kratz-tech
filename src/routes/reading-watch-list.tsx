@@ -5,7 +5,7 @@ export const Route = createFileRoute("/reading-watch-list")({
 	component: ReadingWatchListPage,
 	head: () => ({
 		meta: [
-			{ title: "reading / watch list | nils kratz" },
+			{ title: "reading / watch list | nils anton kratz" },
 			{
 				name: "description",
 				content: "articles and videos worth returning to.",
@@ -87,7 +87,7 @@ function ReadingWatchListPage() {
 									href={entry.href}
 									target="_blank"
 									rel="noreferrer"
-									className="rounded-sm text-foreground underline decoration-border decoration-2 underline-offset-4 transition-colors hover:bg-accent hover:text-accent-foreground hover:no-underline focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
+									className="rounded-sm text-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
 								>
 									{entry.title}
 								</a>

@@ -3,6 +3,22 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@font-face {
+  font-family: "Geist Serif";
+  src: url("/GeistSerif.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/GeistMono.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --radius: 0.5rem;
   --background: oklch(0.9195 0.0169 88.0030);
@@ -37,9 +53,9 @@
   --sidebar-accent-foreground: oklch(0.3012 0 0);
   --sidebar-border: oklch(0.8434 0.0231 87.1621);
   --sidebar-ring: oklch(0.3012 0 0);
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-serif: "Playfair Display", serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --font-sans: "Geist Serif", ui-serif, Georgia, serif;
+  --font-serif: "Geist Serif", ui-serif, Georgia, serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
   --shadow-color: #000000;
   --shadow-opacity: 0.1;
   --shadow-blur: 10px;
@@ -60,42 +76,42 @@
 }
 
 .dark {
-  --background: oklch(0.1913 0 0);
+  --background: oklch(0.1700 0.0220 55.0000);
   --foreground: oklch(0.9173 0.0133 82.4015);
-  --card: oklch(0.2264 0 0);
+  --card: oklch(0.2000 0.0240 55.0000);
   --card-foreground: oklch(0.9173 0.0133 82.4015);
-  --popover: oklch(0.2264 0 0);
+  --popover: oklch(0.2000 0.0240 55.0000);
   --popover-foreground: oklch(0.9173 0.0133 82.4015);
   --primary: oklch(0.8520 0.0205 100.6306);
-  --primary-foreground: oklch(0.3329 0 0);
-  --secondary: oklch(0.2520 0 0);
+  --primary-foreground: oklch(0.3300 0.0300 55.0000);
+  --secondary: oklch(0.2700 0.0280 55.0000);
   --secondary-foreground: oklch(0.8520 0.0205 100.6306);
-  --muted: oklch(0.2850 0 0);
+  --muted: oklch(0.2950 0.0280 55.0000);
   --muted-foreground: oklch(0.6348 0.0113 81.7875);
-  --accent: oklch(0.3329 0 0);
+  --accent: oklch(0.3300 0.0300 55.0000);
   --accent-foreground: oklch(0.8520 0.0205 100.6306);
   --destructive: oklch(0.6368 0.2078 25.3313);
-  --border: oklch(0.2931 0 0);
-  --input: oklch(0.2931 0 0);
+  --border: oklch(0.3200 0.0280 55.0000);
+  --input: oklch(0.3200 0.0280 55.0000);
   --ring: oklch(0.8520 0.0205 100.6306);
   --destructive-foreground: oklch(1.0000 0 0);
   --chart-1: oklch(0.6863 0.1743 34.2614);
   --chart-2: oklch(0.8590 0.0209 74.6369);
   --chart-3: oklch(0.6348 0.0113 81.7875);
   --chart-4: oklch(0.4681 0.0069 84.5829);
-  --chart-5: oklch(0.3523 0 0);
+  --chart-5: oklch(0.3523 0.0250 55.0000);
   --radius: 0.5rem;
-  --sidebar: oklch(0.1730 0 0);
+  --sidebar: oklch(0.1500 0.0200 55.0000);
   --sidebar-foreground: oklch(0.9173 0.0133 82.4015);
   --sidebar-primary: oklch(0.8520 0.0205 100.6306);
-  --sidebar-primary-foreground: oklch(0.3329 0 0);
-  --sidebar-accent: oklch(0.3329 0 0);
+  --sidebar-primary-foreground: oklch(0.3300 0.0300 55.0000);
+  --sidebar-accent: oklch(0.3300 0.0300 55.0000);
   --sidebar-accent-foreground: oklch(0.8520 0.0205 100.6306);
-  --sidebar-border: oklch(0.2931 0 0);
+  --sidebar-border: oklch(0.3200 0.0280 55.0000);
   --sidebar-ring: oklch(0.8520 0.0205 100.6306);
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-serif: "Playfair Display", serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --font-sans: "Geist Serif", ui-serif, Georgia, serif;
+  --font-serif: "Geist Serif", ui-serif, Georgia, serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
   --shadow-color: #000000;
   --shadow-opacity: 0.3;
   --shadow-blur: 15px;
@@ -138,8 +154,8 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --font-sans: var(--font-sans);
-  --font-mono: "JetBrains Mono", monospace;
-  --font-serif: "Playfair Display", serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+  --font-serif: "Geist Serif", ui-serif, Georgia, serif;
   --radius: 0.5rem;
   --tracking-tighter: 0em;
   --tracking-tight: 0em;
